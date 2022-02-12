@@ -7,6 +7,9 @@ import UIKit
 @objc public protocol TMKeyboardDelegate {
     @objc optional func keyboardWillShow()
     @objc optional func keyboardWillHide()
+
+    @objc optional func keyboardDidShow()
+    @objc optional func keyboardDidHide()
 }
 
 /// The main purpose of the library is to automate and minimize interaction with the elements that call the keyboard.
@@ -47,5 +50,13 @@ public extension UIViewController {
             self.view.frame = frame
         }
         (self as? TMKeyboardDelegate)?.keyboardWillHide?()
+    }
+
+    @objc private func keyboardDidHide(notification: Notification) {
+        (self as? TMKeyboardDelegate)?.keyboardDidHide?()
+    }
+
+    @objc private func keyboardDidShow(notification: Notification) {
+        (self as? TMKeyboardDelegate)?.keyboardDidShow?()
     }
 }
