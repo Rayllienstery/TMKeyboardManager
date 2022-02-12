@@ -4,9 +4,9 @@ import UIKit
 ///
 /// Implemented function from protocol will be called when keyboard will posted show/hide notification to the NotificationCenter
 /// Implement this even if you use initKeyboard() logic
-@objc public protocol TMKeyboardProtocol {
-    @objc optional func willShowKeyboard()
-    @objc optional func willHideKeyboard()
+@objc public protocol TMKeyboardDelegate {
+    @objc optional func keyboardWillShow()
+    @objc optional func keyboardWillHide()
 }
 
 /// The main purpose of the library is to automate and minimize interaction with the elements that call the keyboard.
@@ -37,7 +37,7 @@ public extension UIViewController {
                 self.view.frame = frame
             }
         }
-        (self as? TMKeyboardProtocol)?.willShowKeyboard?()
+        (self as? TMKeyboardDelegate)?.keyboardWillShow?()
     }
 
     @objc private func keyboardWillHide(notification: Notification) {
@@ -46,6 +46,6 @@ public extension UIViewController {
         UIView.animate(withDuration: 0.12) {
             self.view.frame = frame
         }
-        (self as? TMKeyboardProtocol)?.willHideKeyboard?()
+        (self as? TMKeyboardDelegate)?.keyboardWillHide?()
     }
 }
