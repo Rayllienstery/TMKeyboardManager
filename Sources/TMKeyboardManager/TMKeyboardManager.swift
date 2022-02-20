@@ -33,4 +33,17 @@ public extension UIViewController {
         NotificationCenter.default.removeObserver(
             self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+
+    /// Check view and find textView with next tag, then focus on it
+    func focusOnNextPesponder(_ textField: UITextField) -> Bool {
+        let targetTag = textField.tag + 1
+
+        if let nextResponder = view.viewWithTag(targetTag) as? UITextField {
+            nextResponder.becomeFirstResponder()
+            return true
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
 }
