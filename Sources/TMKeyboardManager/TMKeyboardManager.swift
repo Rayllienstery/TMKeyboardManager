@@ -33,33 +33,4 @@ public extension UIViewController {
         NotificationCenter.default.removeObserver(
             self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
-    // MARK: - Private
-    @objc private func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
-            var frame = self.view.frame
-            frame.origin.y = -keyboardSize.height
-            UIView.animate(withDuration: 0.12) {
-                self.view.frame = frame
-            }
-        }
-        (self as? TMKeyboardDelegate)?.keyboardWillShow?()
-    }
-
-    @objc private func keyboardWillHide(notification: Notification) {
-        var frame = self.view.frame
-        frame.origin.y = 0
-        UIView.animate(withDuration: 0.12) {
-            self.view.frame = frame
-        }
-        (self as? TMKeyboardDelegate)?.keyboardWillHide?()
-    }
-
-    @objc private func keyboardDidHide(notification: Notification) {
-        (self as? TMKeyboardDelegate)?.keyboardDidHide?()
-    }
-
-    @objc private func keyboardDidShow(notification: Notification) {
-        (self as? TMKeyboardDelegate)?.keyboardDidShow?()
-    }
 }
