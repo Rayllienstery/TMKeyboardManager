@@ -25,6 +25,9 @@ public extension UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        view.addGestureRecognizer(gesture)
     }
 
     func deinitKeyboard() {
@@ -45,5 +48,9 @@ public extension UIViewController {
             textField.resignFirstResponder()
         }
         return false
+    }
+
+    @objc func endEditing() {
+        view.endEditing(true)
     }
 }
