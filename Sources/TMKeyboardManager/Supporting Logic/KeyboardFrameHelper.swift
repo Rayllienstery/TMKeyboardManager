@@ -10,11 +10,19 @@ import UIKit
 extension UIViewController {
     // MARK: - Private
     @objc func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
-            var frame = self.view.frame
-            frame.origin.y = -keyboardSize.height
-            UIView.animate(withDuration: 0.12) {
-                self.view.frame = frame
+        DispatchQueue.main.async { [self] in
+            if let inputView = view.firstResponder?.superview,
+               let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey]
+                                        as? NSValue)?.cgRectValue {
+                let viewFrame = view.convert(inputView.frame, from: inputView.superview)
+                if keyboardFrame.minY < viewFrame.maxY {
+                    var frame = view.frame
+                    frame.origin.y = -((viewFrame.maxY) - keyboardFrame.minY) - 80
+                    UIView.animate(withDuration: 0.24) {
+                        self.view.frame = frame
+                        self.view.layoutIfNeeded()
+                    }
+                }
             }
         }
         (self as? TMKeyboardDelegate)?.keyboardWillShow?()
