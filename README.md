@@ -9,3 +9,34 @@
 - [x] Easy work with multiple InputFields
 - [x] UIPicker/UIDatePicker as keyboard
 - [x] Done and Next+Done toolbar for keyboard 
+
+## Requirements
+
+- iOS 14.0+
+- Xcode 13
+
+## Installation
+
+### Swift Package Manager
+
+Instructions for [Swift Package Manager](https://swift.org/package-manager/) support can be
+found at [SwiftPackageManager](SwiftPackageManager.md) Markdown file.
+
+## Usage example
+
+Automatic frame for Controllers with keyboard functionality
+```swift
+import TMKeyboardManager
+
+class PickerViewController: UIViewController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.initKeyboard()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.deinitKeyboard()
+    }
+}
+```
