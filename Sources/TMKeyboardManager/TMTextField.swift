@@ -28,6 +28,15 @@ open class TMTextField: UITextField {
         setToolbar()
     }
 
+    /// Call this for TextField and implement UIPickerViewDelegate, UIPickerDataSource as usual
+    open func setPickerKeyboard(_ delegate: UIPickerViewDelegate) {
+        let picker = UIPickerView()
+        picker.dataSource = (delegate as? UIPickerViewDataSource)!
+        picker.delegate = delegate
+        inputView = picker
+        setToolbar()
+    }
+
     /// Toolbar with Done and Next button
     open func setNextDoneToolbar(tintColor: UIColor = .systemBlue,
                                  nextTitle: String = "Next") {
