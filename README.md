@@ -26,6 +26,7 @@ found at [SwiftPackageManager](SwiftPackageManager.md) Markdown file.
 
 Automatic frame for Controllers with keyboard functionality
 ```swift
+import UIKit
 import TMKeyboardManager
 
 class PickerViewController: UIViewController {
@@ -37,6 +38,42 @@ class PickerViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.deinitKeyboard()
+    }
+}
+```
+
+Easiest access to the keyboard behaviour
+```swift
+import UIKit
+import TMKeyboardManager
+
+class DelegateViewController: UIViewController, TMKeyboardDelegate {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.initKeyboard()
+
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.deinitKeyboard()
+    }
+
+    // MARK: - TMKeyboardDelegate
+    func keyboardWillShow() {
+        print("keyboardWillShow")
+    }
+
+    func keyboardWillHide() {
+        print("keyboardWillHide")
+    }
+
+    func keyboardDidShow() {
+        print("keyboardDidShow")
+    }
+
+    func keyboardDidHide() {
+        print("keyboardDidHide")
     }
 }
 ```
