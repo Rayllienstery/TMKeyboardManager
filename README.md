@@ -29,7 +29,7 @@ Automatic frame for Controllers with keyboard functionality
 import UIKit
 import TMKeyboardManager
 
-class PickerViewController: UIViewController {
+class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.initKeyboard()
@@ -47,7 +47,7 @@ Easiest access to the keyboard behaviour
 import UIKit
 import TMKeyboardManager
 
-class DelegateViewController: UIViewController, TMKeyboardDelegate {
+class ViewController: UIViewController, TMKeyboardDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.initKeyboard()
