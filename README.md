@@ -77,3 +77,8 @@ class ViewController: UIViewController, TMKeyboardDelegate {
     }
 }
 ```
+
+## License
+<br />
+
+Package released under the Apache 2.0 license, check the LICENSE file for more info.
