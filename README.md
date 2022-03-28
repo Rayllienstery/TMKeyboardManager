@@ -121,7 +121,6 @@ class DelegateViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.initKeyboard()
-
     }
 
     override func viewDidDisappear(_ animated: Bool) {
