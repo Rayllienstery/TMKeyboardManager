@@ -134,6 +134,58 @@ class DelegateViewController: UIViewController, UITextFieldDelegate {
 }
 ```
 
+#### Picker Keyboard
+
+<img src= "https://raw.githubusercontent.com/Rayllienstery/TMKeyboardManager/main/Media/Picker.png" width="250" >
+
+1. Inherit your UITextField from TMTextField
+```swift
+@IBOutlet weak var datePickerTextField: TMTextField!
+```
+
+2. Add setPickerKeyboard with UIPickerViewDelegate as Delegate
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    pickerTextField.setPickerKeyboard(self)
+}
+```
+
+3. And implement UIPickerViewDelegate as usual
+```swift
+extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {  }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {  }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {  }
+}
+```
+
+#### DatePicker Keyboard
+
+<img src= "https://raw.githubusercontent.com/Rayllienstery/TMKeyboardManager/main/Media/DatePicker.png" width="250" >
+
+1. Inherit your UITextField from TMTextField
+```swift
+@IBOutlet weak var datePickerTextField: TMTextField!
+```
+
+2. Add setDatePickerKeyboard with UIPickerViewDelegate as Delegate and selector (See Step 3)
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    datePickerTextField.setDatePickerKeyboard(self, selector: #selector(dateDidChange(sender:)))
+}
+```
+
+3. Add selector with UIDatePicker as Sender
+```swift
+@objc func dateDidChange(sender: UIDatePicker) {
+    print(sender.date.description)
+}
+```
+
 ## License
 <br />
 Package released under the Apache 2.0 license, check the LICENSE file for more info.
