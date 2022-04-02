@@ -31,7 +31,16 @@ extension UIViewController {
                 let viewFrame = view.convert(inputView.frame, from: inputView.superview)
                 if keyboardFrame.minY < viewFrame.maxY {
                     var frame = view.frame
-                    frame.origin.y = -((viewFrame.maxY) - keyboardFrame.minY) - 80
+
+                    let window = UIApplication.shared.windows.first
+                    let bottomPadding = window?.safeAreaInsets.bottom
+
+                    let bottomSpaceForFullScreen = (bottomPadding ?? .zero) + 16
+                    let bottomSpaceForModal: CGFloat = (bottomPadding ?? .zero) + 84
+                    let bottomSpace: CGFloat = self.modalPresentationStyle.rawValue == 0
+                        ? bottomSpaceForFullScreen : bottomSpaceForModal
+
+                    frame.origin.y = -((viewFrame.maxY) - keyboardFrame.minY) - (bottomSpace)
                     UIView.animate(withDuration: 0.24) {
                         self.view.frame = frame
                         self.view.layoutIfNeeded()
