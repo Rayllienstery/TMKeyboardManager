@@ -7,8 +7,22 @@
 
 import UIKit
 
+typealias BottomView = UIView
+
 extension UIViewController {
-    // MARK: - Private
+    func addBottomView() {
+        if view.subviews.filter({type(of: $0) == BottomView.self}).count == 0 {
+            let bottomView = BottomView(
+                frame: .init(
+                    origin: .init(x: 0, y: view.frame.size.height - 200),
+                    size: .init(width: view.frame.width, height: view.frame.height / 2)))
+            bottomView.backgroundColor = view.backgroundColor
+            view.addSubview(bottomView)
+            view.sendSubviewToBack(bottomView)
+        }
+    }
+
+    // MARK: - Delegate
     @objc func keyboardWillShow(notification: Notification) {
         DispatchQueue.main.async { [self] in
             if let inputView = view.firstResponder?.superview,

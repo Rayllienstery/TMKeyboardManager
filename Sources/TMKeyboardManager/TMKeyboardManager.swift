@@ -28,6 +28,8 @@ public extension UIViewController {
 
         let gesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
         view.addGestureRecognizer(gesture)
+
+        addBottomView()
     }
 
     func deinitKeyboard() {
