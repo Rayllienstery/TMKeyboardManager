@@ -11,7 +11,8 @@ open class TMTextView: UITextView {
     // MARK: - Open
     /// add Date Picker for textField
     open func setDatePickerKeyboard(_ target: Any, selector: Selector,
-                                      minDate: Date? = Date(),
+                                      minDate: Date? = nil,
+                                      maxDate: Date? = nil,
                                       datePickerMode: UIDatePicker.Mode = .date,
                                       selectedDate: Date = Date()) {
         let datePicker = UIDatePicker()
@@ -19,9 +20,10 @@ open class TMTextView: UITextView {
         datePicker.addTarget(target, action: selector, for: .valueChanged)
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.sizeToFit()
-        if let minDate = minDate {
-            datePicker.minimumDate = minDate
-        }
+
+        if let minDate { datePicker.minimumDate = minDate }
+        if let maxDate { datePicker.maximumDate = maxDate }
+
         datePicker.date = selectedDate
         inputView = datePicker
 
