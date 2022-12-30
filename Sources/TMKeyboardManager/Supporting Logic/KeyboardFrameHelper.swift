@@ -48,7 +48,7 @@ extension UIViewController {
                 }
             }
         }
-        (self as? TMKeyboardDelegate)?.keyboardWillShow?()
+        (self as? TMKeyboardDelegate)?.keyboardWillShow()
     }
 
     @objc func keyboardWillHide(notification: Notification) {
@@ -57,14 +57,14 @@ extension UIViewController {
         UIView.animate(withDuration: 0.12) {
             self.view.frame = frame
         }
-        (self as? TMKeyboardDelegate)?.keyboardWillHide?()
+        (self as? TMKeyboardDelegate)?.keyboardWillHide()
     }
 
     @objc func keyboardDidHide(notification: Notification) {
-        (self as? TMKeyboardDelegate)?.keyboardDidHide?()
+        (self as? TMKeyboardDelegate)?.keyboardDidHide()
     }
 
     @objc func keyboardDidShow(notification: Notification) {
-        (self as? TMKeyboardDelegate)?.keyboardDidShow?()
+        (self as? TMKeyboardDelegate)?.keyboardDidShow()
     }
 }
