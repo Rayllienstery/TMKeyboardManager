@@ -186,6 +186,25 @@ override func viewDidLoad() {
 }
 ```
 
+## Customisation
+Use TMKeyboardConfig flags to convigure available options:
+- tintColor
+
+```swift
+import UIKit
+import TMKeyboardManager
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        TMKeyboardConfig.tintColor = .systemMint
+        return true
+    }
+}
+```
+
 ## License
 <br />
 Package released under the Apache 2.0 license, check the LICENSE file for more info.
