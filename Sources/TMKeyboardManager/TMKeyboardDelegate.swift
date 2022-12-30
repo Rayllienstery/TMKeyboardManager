@@ -85,6 +85,7 @@ public extension TMKeyboardDelegate {
     }
 }
 
+// Credit https://stackoverflow.com/users/6624900/pavel-stepanov
 private class ClosureTapGestureRecognizer: UITapGestureRecognizer {
     private var action: () -> Void
 
