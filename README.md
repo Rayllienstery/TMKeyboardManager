@@ -29,7 +29,7 @@ found at [SwiftPackageManager](SwiftPackageManager.md) Markdown file.
 import UIKit
 import TMKeyboardManager
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TMKeyboardDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.initKeyboard()
