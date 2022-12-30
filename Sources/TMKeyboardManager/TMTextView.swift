@@ -8,6 +8,8 @@
 import UIKit
 
 open class TMTextView: UITextView {
+    private typealias Config = TMKeyboardConfig
+
     // MARK: - Open
     /// add Date Picker for textField
     open func setDatePickerKeyboard(_ target: Any, selector: Selector,
@@ -20,6 +22,7 @@ open class TMTextView: UITextView {
         datePicker.addTarget(target, action: selector, for: .valueChanged)
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.sizeToFit()
+        datePicker.tintColor = Config.tintColor
 
         if let minDate { datePicker.minimumDate = minDate }
         if let maxDate { datePicker.maximumDate = maxDate }
@@ -35,6 +38,7 @@ open class TMTextView: UITextView {
         let picker = UIPickerView()
         picker.dataSource = (delegate as? UIPickerViewDataSource)!
         picker.delegate = delegate
+        picker.tintColor = Config.tintColor
         inputView = picker
         setToolbar()
     }
@@ -47,6 +51,7 @@ open class TMTextView: UITextView {
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
         toolbar.tintColor = tintColor
+        toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
 
@@ -63,6 +68,7 @@ open class TMTextView: UITextView {
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
         toolbar.tintColor = tintColor
+        toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
 }

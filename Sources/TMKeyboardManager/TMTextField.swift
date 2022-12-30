@@ -8,6 +8,8 @@
 import UIKit
 
 open class TMTextField: UITextField {
+    private typealias Config = TMKeyboardConfig
+
     // MARK: - Open
     /// add Date Picker for textField
     open func setDatePickerKeyboard(_ target: Any, selector: Selector,
@@ -20,6 +22,7 @@ open class TMTextField: UITextField {
         datePicker.addTarget(target, action: selector, for: .valueChanged)
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.sizeToFit()
+        datePicker.tintColor = Config.tintColor
 
         if let minDate { datePicker.minimumDate = minDate }
         if let maxDate { datePicker.maximumDate = maxDate }
@@ -35,6 +38,7 @@ open class TMTextField: UITextField {
         let picker = UIPickerView()
         picker.dataSource = (delegate as? UIPickerViewDataSource)!
         picker.delegate = delegate
+        picker.tintColor = Config.tintColor
         inputView = picker
         setToolbar()
     }
@@ -49,6 +53,7 @@ open class TMTextField: UITextField {
         toolbar.items = [doneButton, flexibleSeparator, nextButton]
         toolbar.sizeToFit()
         toolbar.tintColor = tintColor
+        toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
 
@@ -60,6 +65,7 @@ open class TMTextField: UITextField {
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
         toolbar.tintColor = tintColor
+        toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
 
@@ -83,6 +89,7 @@ open class TMTextField: UITextField {
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
         toolbar.tintColor = tintColor
+        toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
 }
