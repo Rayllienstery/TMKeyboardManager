@@ -9,7 +9,7 @@ import UIKit
 
 public protocol TMKeyboardDelegate: UIViewController {
     func initKeyboard()
-    func initKeyboardObserver()
+    func initShowKeyboardObserver()
     func initHideKeyboardGesture()
     func deinitKeyboard()
 
@@ -25,12 +25,12 @@ public protocol TMKeyboardDelegate: UIViewController {
 public extension TMKeyboardDelegate {
     // MARK: - Public
     func initKeyboard() {
-        initKeyboardObserver()
+        initShowKeyboardObserver()
         initHideKeyboardGesture()
         addBottomView()
     }
 
-    func initKeyboardObserver() {
+    func initShowKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
