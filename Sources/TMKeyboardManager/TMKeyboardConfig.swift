@@ -8,5 +8,5 @@
 import UIKit
 
 public final class TMKeyboardConfig {
-    public static var tintColor: UIColor = .link
+    public static var tintColor: UIColor = .systemBlue
 }

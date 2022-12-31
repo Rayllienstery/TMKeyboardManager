@@ -44,13 +44,12 @@ open class TMTextView: UITextView {
     }
 
     /// Toolbar with Done button
-    open func setDoneToolbar(tintColor: UIColor = .systemBlue) {
+    open func setDoneToolbar() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1))
         let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneLogic))
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
-        toolbar.tintColor = tintColor
         toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
@@ -61,13 +60,12 @@ open class TMTextView: UITextView {
     }
 
     /// Arrange toolbar for dateTextField
-    private func setToolbar(tintColor: UIColor = .systemBlue) {
+    private func setToolbar() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1))
         let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneLogic))
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
-        toolbar.tintColor = tintColor
         toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }

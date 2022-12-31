@@ -44,27 +44,24 @@ open class TMTextField: UITextField {
     }
 
     /// Toolbar with Done and Next button
-    open func setNextDoneToolbar(tintColor: UIColor = .systemBlue,
-                                 nextTitle: String = "Next") {
+    open func setNextDoneToolbar(nextTitle: String = "Next") {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1))
         let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let nextButton = UIBarButtonItem(title: nextTitle, style: .plain, target: self, action: #selector(nextLogic))
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneLogic))
         toolbar.items = [doneButton, flexibleSeparator, nextButton]
         toolbar.sizeToFit()
-        toolbar.tintColor = tintColor
         toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
 
     /// Toolbar with Done button
-    open func setDoneToolbar(tintColor: UIColor = .systemBlue) {
+    open func setDoneToolbar() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1))
         let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneLogic))
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
-        toolbar.tintColor = tintColor
         toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
@@ -82,13 +79,12 @@ open class TMTextField: UITextField {
     }
 
     /// Arrange toolbar for dateTextField
-    private func setToolbar(tintColor: UIColor = .systemBlue) {
+    private func setToolbar() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1))
         let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneLogic))
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
-        toolbar.tintColor = tintColor
         toolbar.tintColor = Config.tintColor
         inputAccessoryView = toolbar
     }
