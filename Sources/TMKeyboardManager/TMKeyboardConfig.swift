@@ -8,5 +8,9 @@
 import UIKit
 
 public final class TMKeyboardConfig {
-    public static var tintColor: UIColor = .systemBlue
+    public static let shared = TMKeyboardConfig.init()
+
+    public var tintColor: UIColor = .systemBlue
+
+    private init() { }
 }

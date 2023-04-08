@@ -22,7 +22,7 @@ open class TMTextView: UITextView {
         datePicker.addTarget(target, action: selector, for: .valueChanged)
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.sizeToFit()
-        datePicker.tintColor = Config.tintColor
+        datePicker.tintColor = Config.shared.tintColor
 
         if let minDate { datePicker.minimumDate = minDate }
         if let maxDate { datePicker.maximumDate = maxDate }
@@ -38,7 +38,7 @@ open class TMTextView: UITextView {
         let picker = UIPickerView()
         picker.dataSource = (delegate as? UIPickerViewDataSource)!
         picker.delegate = delegate
-        picker.tintColor = Config.tintColor
+        picker.tintColor = Config.shared.tintColor
         inputView = picker
         setToolbar()
     }
@@ -50,7 +50,7 @@ open class TMTextView: UITextView {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneLogic))
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
-        toolbar.tintColor = Config.tintColor
+        toolbar.tintColor = Config.shared.tintColor
         inputAccessoryView = toolbar
     }
 
@@ -66,7 +66,7 @@ open class TMTextView: UITextView {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneLogic))
         toolbar.items = [flexibleSeparator, doneButton]
         toolbar.sizeToFit()
-        toolbar.tintColor = Config.tintColor
+        toolbar.tintColor = Config.shared.tintColor
         inputAccessoryView = toolbar
     }
 }

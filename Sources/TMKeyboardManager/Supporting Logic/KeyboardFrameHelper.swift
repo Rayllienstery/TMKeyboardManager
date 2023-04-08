@@ -10,6 +10,13 @@ import UIKit
 typealias BottomView = UIView
 
 extension UIViewController {
+    private var isModal: Bool {
+        let isPresentingViewController = presentingViewController != nil
+        let isNavigationController = navigationController?.presentingViewController?.presentedViewController == navigationController
+        let isUITabBarController = tabBarController?.presentingViewController is UITabBarController
+
+        return isPresentingViewController || isNavigationController || isUITabBarController
+    }
 
     // MARK: - Delegate
     @objc func keyboardWillShow(notification: Notification) {
@@ -18,33 +25,32 @@ extension UIViewController {
                let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey]
                                         as? NSValue)?.cgRectValue {
                 let viewFrame = view.convert(inputView.frame, from: inputView.superview)
-                // TODO: - Remove debug
-                inputView.backgroundColor = .systemGreen.withAlphaComponent(0.2)
+                let frameSpacer = UIScreen.main.bounds.height - view.frame.height //+ viewFrame.height
 
-                if keyboardFrame.minY < viewFrame.maxY {
+                if (keyboardFrame.minY - frameSpacer) < viewFrame.maxY {
                     var frame = view.frame
+                    let bottomPadding: CGFloat = 16
 
-                    let window = UIApplication.shared.windows.first
-                    let bottomPadding = window?.safeAreaInsets.bottom
+                    let keyboardPadding = -(keyboardFrame.height + bottomPadding)
 
-                    let bottomSpaceForFullScreen = (bottomPadding ?? .zero) + 16
-                    let bottomSpaceForModal: CGFloat = (bottomPadding ?? .zero) + 84
-                    let bottomSpace: CGFloat = self.modalPresentationStyle.rawValue == 0
-                        ? bottomSpaceForFullScreen : bottomSpaceForModal
-                    let keyboardHeight = keyboardFrame.height + 16
+                    let newY = -((viewFrame.maxY) - keyboardFrame.minY) - bottomPadding
+                    let verticalOvermoved = newY < keyboardPadding
 
-                    let newY = -((viewFrame.maxY) - keyboardFrame.minY) - (bottomSpace)
-
-                    frame.origin.y = newY > -keyboardHeight ? newY : -keyboardHeight
-//                    frame.origin.y = -keyboardFrame.height
-//                    frame.origin.y = -inputView.frame.height
+                    frame.origin.y = (verticalOvermoved ? keyboardPadding : newY) - frameSpacer
                     UIView.animate(withDuration: 0.24) {
                         self.view.frame = frame
                         self.view.layoutIfNeeded()
                     }
-                    print(newY)
-                    print(-keyboardHeight)
-                    print(frame)
+
+                    print("\n=====\nframeSpacer", frameSpacer)
+                    print("verticalOvermoved", verticalOvermoved)
+                    print("viewFrame.height", viewFrame.height)
+                    print("viewFrame.maxY", viewFrame.maxY)
+                    print("keyboardFrame.minY", keyboardFrame.minY)
+                    print("newY", newY)
+                    print("keyboardPadding", keyboardPadding)
+                    print(frame.origin.y)
+                    print("=====")
                 }
             }
         }
